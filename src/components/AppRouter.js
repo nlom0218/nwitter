@@ -17,15 +17,17 @@ const AppRouter = ({ isLogged, refreshUser }) => {
                             maxWidth: 890,
                             width: "100%",
                             margin: "0 auto",
-                            marginTop: 80,
+                            marginTop: 60,
                             display: "flex",
+                            flexDirection: "column",
                             justifyContent: "center",
+                            alignItems: "center"
                         }}>
                         <Route exact path="/"><Home /></Route>
                         <Route path="/profile"><Profile refreshUser={refreshUser} /></Route>
                     </div>
                     :
-                    <Route exact path="/"><Auth /></Route>
+                    <Route exact path="/" refreshUser={refreshUser}><Auth /></Route>
                 }
             </Switch>
         </Router>

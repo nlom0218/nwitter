@@ -9,7 +9,7 @@ import {
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Auth = () => {
+const Auth = ({ refreshUser }) => {
     const onClickSocialBtn = async (e) => {
         const { target: { name } } = e
         let provider = ""
@@ -32,7 +32,7 @@ const Auth = () => {
                 size="3x"
                 style={{ marginBottom: 30 }}
             />
-            <AuthForm />
+            <AuthForm refreshUser={refreshUser} />
             <div className="authBtns">
                 <button onClick={onClickSocialBtn} name="google" className="authBtn">
                     Continue with Google <FontAwesomeIcon icon={faGoogle} />

@@ -27,7 +27,8 @@ const NweetFactory = ({ user }) => {
             text: nweet,
             createdAt: Date.now(),
             creatorId: user.id,
-            imgUrl
+            imgUrl,
+            creator: user.displayName
         }
         await dbService.collection("nweets").add(dbNweetObj)
         onClearImg()
@@ -49,7 +50,9 @@ const NweetFactory = ({ user }) => {
     }
     const onClearImg = () => {
         setImg("")
-        document.getElementById("uploadImg").value = null
+        if (document.getElementById("uploadImg").value) {
+            document.getElementById("uploadImg").value = null
+        }
     }
     return (
         <form onSubmit={onSubmit} className="factoryForm">

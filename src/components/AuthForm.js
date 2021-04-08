@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { authService } from '../fbase';
 
-const AuthForm = () => {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (user, id, displayName, photoURL) => dispatch({ type: "LOGIN", user, id, displayName, photoURL })
+    }
+}
+
+const AuthForm = ({ login }) => {
     const [email, setEmail] = useState("")
     const [displayName, setDisplayName] = useState("")
     const [password, setPassword] = useState("")
@@ -23,6 +30,7 @@ const AuthForm = () => {
             if (newAccount) {
                 await authService.createUserWithEmailAndPassword(email, password)
                 await authService.currentUser.updateProfile({ displayName })
+                login(email, null, displayName, null)
             } else {
                 await authService.signInWithEmailAndPassword(email, password)
             }
@@ -70,4 +78,4 @@ const AuthForm = () => {
     );
 }
 
-export default AuthForm;
+export default connect(null, mapDispatchToProps)(AuthForm);

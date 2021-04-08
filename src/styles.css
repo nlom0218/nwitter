@@ -73,15 +73,35 @@ form {
 /* Profile Page */
 
 .profileForm {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-  padding-bottom: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .logOut {
-  margin-top: 50px;
+  margin-top: 20px;
+}
+
+.profilePhoto{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+.photoBtn{
+  all: unset;
+  box-sizing: border-box;
+  appearance: none;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
+  padding: 7px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  background-color: #04aaff;
+  cursor: pointer;
 }
 
 /* Nwitter Factory */
@@ -206,6 +226,12 @@ form {
 
 .nweet__actions span:first-child {
   margin-right: 10px;
+}
+
+.nweet .nweet_creator{
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
 }
 
 /* Auth */

@@ -5,7 +5,8 @@ const initState = {
         login: false,
         email: null,
         displayName: null,
-        id: null
+        id: null,
+        photoURL: null
     },
     nweets: [],
 }
@@ -13,9 +14,25 @@ const initState = {
 const reducer = (state = initState, action) => {
     switch (action.type) {
         case "LOGIN":
-            return { ...state, user: { login: true, email: action.user, id: action.id, displayName: action.displayName } }
+            return {
+                ...state, user: {
+                    login: true,
+                    email: action.user,
+                    id: action.id,
+                    displayName: action.displayName,
+                    photoURL: action.photoURL
+                }
+            }
         case "LOGOUG":
-            return { ...state, user: { login: false, email: null } }
+            return {
+                ...state, user: {
+                    login: false,
+                    email: null,
+                    id: null,
+                    displayName: null,
+                    photoURL: null
+                }
+            }
         case "SET_NWEETS":
             return { ...state, nweets: action.nweetArray }
         default:

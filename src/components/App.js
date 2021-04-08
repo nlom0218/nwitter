@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import { connect } from 'react-redux';
 import { authService } from '../fbase';
 import AppRouter from './AppRouter';
@@ -12,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (user, id, displayName) => dispatch({ type: "LOGIN", user, id, displayName })
+    login: (user, id, displayName, photoURL) => dispatch({ type: "LOGIN", user, id, displayName, photoURL })
   }
 }
 
@@ -21,8 +20,9 @@ function App({ login }) {
   const [isLogged, setIsLogged] = useState(false)
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
-        login(user.email, user.uid, user.displayName);
+        login(user.email, user.uid, user.displayName, user.photoURL);
         setIsLogged(true)
       } else {
         setIsLogged(false)
@@ -32,12 +32,11 @@ function App({ login }) {
   }, [])
   const refreshUser = () => {
     const user = authService.currentUser
-    login(user.email, user.uid, user.displayName)
+    login(user.email, user.uid, user.displayName, user.photoURL)
   }
   return (
     <>
       {init ? <AppRouter isLogged={isLogged} refreshUser={refreshUser} /> : <div>It's Loading ...</div>}
-      <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
 }

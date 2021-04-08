@@ -68,6 +68,7 @@ const Nweet = ({ nweet, user }) => {
                         </span>
                     </div>
                 )}
+                <div className="nweet_creator">creator: {nweet.creator}</div>
             </>}
         </div>
     )
